@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Frequency</title>
+    </head>
+    <body>
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type='text' placeholder="Enter a url Here" name="url" value={{url}}>
+
+            <input type="submit">
+  {%if messages %}
+  {% for message in messages %}
+  {{message}}
+  {% endfor %}
+  {% endif %}
+        </form>
+    </body>
+</html>
