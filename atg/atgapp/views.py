@@ -9,6 +9,11 @@ from django.contrib import messages
 def home(request):
   if request.method =='POST':
       url=request.POST['url']
+      if Work.objects.filter(url=url).exists():
+       ans=Work.objects.filter(url=url)
+       url=ans[0].url
+       word=ans[0].word
+       return HttpResponse("<h2 style='color:#ea5252;'>Hey,This url somebody already present in our databse...!!!</h2><h2>Processed url: </h2>"+url+"<h2>Most Renderd Text :</h2>"+word+"<br><br><br><br><a href='/' style=' text-decoration: none; border-radius: 1px;border:1px solid black; background:#3aa1d8;'>Search another site</a>")
       res=requests.get(url)
       soup=BeautifulSoup(res.text,"html.parser")
       tex=soup.find('body')
